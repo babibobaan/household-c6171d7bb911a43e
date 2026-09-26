@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sénse TOKYO — Our Cashflow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --st-ivory:#f5f1ea; --st-paper:#fbf9f5; --st-stone:#ebe4d8; --st-line:#dcd2c3;
+  --st-ink:#151311; --st-ink2:#4a443d; --st-muted:#8c8275; --st-sepia:#7a6650; --st-sand:#c9b79c;
+  --st-night:#1b1714; --st-olive:#5e6a4f; --st-olive-bg:#e9ebe1; --st-clay:#a0634a; --st-clay-bg:#f3e6de;
+  --st-serif:"Didot","Bodoni 72","Bodoni Moda","Playfair Display",Georgia,serif;
+  --st-sans:"Inter","Helvetica Neue","Hiragino Sans","Hiragino Kaku Gothic ProN",Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--st-ivory);color:var(--st-ink);font-family:var(--st-sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:0 40px}
+.eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--st-muted);font-weight:500}
+.num{font-variant-numeric:tabular-nums}
+nav{position:sticky;top:0;z-index:20;background:rgba(245,241,234,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--st-line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.mark{font-family:var(--st-serif);font-size:22px;line-height:.9;color:var(--st-ink);text-decoration:none}
+nav a.mark{text-transform:none;letter-spacing:0;color:var(--st-ink)}
+.mark small{display:block;font-size:12px;letter-spacing:.32em}
+nav ul{display:flex;gap:28px;list-style:none}
+nav a{color:var(--st-ink2);text-decoration:none;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+nav a.active{color:var(--st-ink);border-bottom:1px solid var(--st-ink);padding-bottom:3px}
+
+.hero{background:var(--st-night);color:var(--st-ivory)}
+.hero .wrap{padding-top:84px;padding-bottom:56px}
+.hero h1{font-family:var(--st-serif);font-weight:400;font-size:62px;line-height:1.04;margin:18px 0}
+.hero h1 em{color:#d9ccb8}
+.hero .lede{color:#cfc5b6;max-width:620px;font-weight:300;font-size:16px}
+.hero .eyebrow{color:#a89c8b}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #3a332c;margin-top:48px}
+.kpi{padding:22px 24px 0 0}
+.kpi+.kpi{padding-left:24px;border-left:1px solid #3a332c}
+.kpi .v{font-family:var(--st-serif);font-size:34px;line-height:1.1}
+.kpi .l{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#a89c8b;margin-top:6px}
+.kpi.bad .v{color:#e2b7a4} .kpi.good .v{color:#c8d1b5}
+
+.toggle-bar{display:flex;align-items:center;gap:18px;margin-top:36px;flex-wrap:wrap}
+.seg{display:inline-flex;border:1px solid #6b6056}
+.seg button{white-space:nowrap;background:none;border:0;padding:9px 16px;font:inherit;font-size:11px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;color:#cfc5b6}
+.seg button.on{background:var(--st-ivory);color:var(--st-ink)}
+.toggle-bar span{font-size:13px;color:#a89c8b}
+
+section{padding:84px 0;border-bottom:1px solid var(--st-line)}
+.sec-head{display:grid;grid-template-columns:220px 1fr;gap:40px;margin-bottom:40px;align-items:end}
+.sec-head .idx{font-family:var(--st-serif);font-size:15px;color:var(--st-muted)}
+.sec-head h2{font-family:var(--st-serif);font-weight:400;font-size:40px;line-height:1.1}
+.sec-head p{color:var(--st-ink2);max-width:660px;margin-top:10px}
+
+/* accounts */
+.accts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--st-line);border:1px solid var(--st-line)}
+.acct{background:var(--st-paper);padding:22px 20px 20px;display:flex;flex-direction:column;gap:6px;min-height:190px}
+.acct .role{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--st-muted)}
+.acct h3{font-family:var(--st-serif);font-weight:400;font-size:22px;line-height:1.15}
+.acct .bal{font-family:var(--st-serif);font-size:26px;margin-top:4px}
+.acct .flow{font-size:12px;color:var(--st-ink2);margin-top:auto;border-top:1px solid var(--st-line);padding-top:10px;display:flex;justify-content:space-between}
+.acct .flow b{font-weight:600}
+.neg{color:var(--st-clay)} .pos{color:var(--st-olive)}
+.acct.alert{background:#faf1ec}
+.liab{display:flex;justify-content:space-between;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--st-line);margin-top:22px;font-size:14px;color:var(--st-ink2)}
+.liab b{font-family:var(--st-serif);font-size:22px;font-weight:400;color:var(--st-ink)}
+
+/* sankey */
+.sankey-box{background:var(--st-paper);border:1px solid var(--st-line);padding:28px 24px 18px}
+#sankey{width:100%;height:auto;display:block}
+#sankey text{font-family:var(--st-sans)}
+.sk-legend{display:flex;gap:26px;flex-wrap:wrap;font-size:12px;color:var(--st-ink2);margin-top:14px}
+.sk-legend i{display:inline-block;width:10px;height:10px;margin-right:7px;vertical-align:-1px}
+.caption{font-size:12px;color:var(--st-muted);margin-top:10px}
+
+/* monthly table */
+.mtable{width:100%;border-collapse:collapse;font-size:14px}
+.mtable th{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--st-muted);font-weight:500;text-align:right;padding:0 0 10px;border-bottom:1px solid var(--st-ink)}
+.mtable th:first-child,.mtable td:first-child{text-align:left}
+.mtable td{padding:11px 0;border-bottom:1px solid var(--st-line);text-align:right}
+.mtable tr.grp td{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--st-muted);padding-top:22px;border-bottom:1px solid var(--st-line)}
+.mtable tr.tot td{border-top:1px solid var(--st-ink);border-bottom:0;font-family:var(--st-serif);font-size:20px;padding-top:14px}
+.mtable td small{color:var(--st-muted);font-size:11px;display:block}
+.two{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:start}
+.note-card{background:var(--st-paper);border:1px solid var(--st-line);padding:26px 24px}
+.note-card h4{font-family:var(--st-serif);font-weight:400;font-size:22px;margin:8px 0 10px}
+.note-card p{font-size:13px;color:var(--st-ink2);margin-bottom:10px}
+.note-card + .note-card{margin-top:16px}
+
+/* projection */
+.proj-box{background:var(--st-paper);border:1px solid var(--st-line);padding:26px 24px 18px}
+#proj{width:100%;height:auto;display:block}
+.proj-legend{display:flex;gap:22px;flex-wrap:wrap;font-size:12px;color:var(--st-ink2);margin-top:10px}
+.proj-legend i{display:inline-block;width:14px;height:3px;margin-right:7px;vertical-align:3px}
+.events{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:40px}
+.ev{border-top:1px solid var(--st-ink);padding-top:16px}
+.ev .d{font-family:var(--st-serif);font-size:28px}
+.ev h4{font-weight:500;font-size:15px;margin:6px 0}
+.ev p{font-size:13px;color:var(--st-ink2)}
+.ptable-wrap{overflow-x:auto;margin-top:36px}
+.ptable{width:100%;border-collapse:collapse;font-size:12.5px;min-width:980px}
+.ptable th{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--st-muted);font-weight:500;text-align:right;padding:0 6px 8px;border-bottom:1px solid var(--st-ink)}
+.ptable td{text-align:right;padding:8px 6px;border-bottom:1px solid var(--st-line)}
+.ptable th:first-child,.ptable td:first-child{text-align:left;padding-left:0}
+.ptable tr.tot td{font-weight:600;border-top:1px solid var(--st-ink)}
+
+footer{padding:48px 0 64px;color:var(--st-muted);font-size:12px}
+footer .wrap{display:grid;grid-template-columns:1fr 1.4fr;gap:40px}
+
+@media (max-width:1000px){
+  .wrap{padding:0 22px}
+  nav ul{display:none}
+  .hero h1{font-size:42px}
+  .kpis{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .kpi{padding:16px 12px 16px 0}
+  .kpi+.kpi{padding-left:12px}
+  .kpi:nth-child(3){border-left:0;padding-left:0;border-top:1px solid #3a332c}
+  .kpi:nth-child(4){border-top:1px solid #3a332c}
+  .kpi .v{font-size:24px}
+  .accts{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .sec-head,.two,.events,footer .wrap{grid-template-columns:minmax(0,1fr)}
+  .sec-head{gap:6px}
+  .sec-head h2{font-size:32px}
+  .sankey-box{padding:14px 8px;overflow-x:auto}
+  #sankey{min-width:760px}
+}
+@media print{nav{display:none}.hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="mark" href="index.html">Sénse<small>TOKYO</small></a>
+  <ul>
+    <li><a href="index.html">Portal</a></li>
+    <li><a href="spending.html">Spending</a></li>
+    <li><a class="active" href="#">Cashflow</a></li>
+    <li><a href="#flow">Flow</a></li>
+    <li><a href="#projection">12 months</a></li>
+  </ul>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">Personal cashflow · balances as of 26 Sep 2026 · steady-state month</div>
+  <h1>Where our money <em>comes from,</em><br>and where it goes.</h1>
+  <p class="lede">Every account, every regular flow, and what the next twelve months look like if nothing changes. Switch to <i>our spending plan</i> to see the difference the card budget makes.</p>
+  <div class="kpis">
+    <div class="kpi"><div class="v num" id="k-assets"></div><div class="l">Liquid assets incl. Monex</div></div>
+    <div class="kpi"><div class="v num" id="k-in"></div><div class="l">Money in, per month</div></div>
+    <div class="kpi"><div class="v num" id="k-out"></div><div class="l">Money out, per month</div></div>
+    <div class="kpi" id="k-net-box"><div class="v num" id="k-net"></div><div class="l">Net, per month</div></div>
+  </div>
+  <div class="toggle-bar">
+    <div class="seg" id="scenario"><button data-v="base" class="on">As today</button><button data-v="plan">Our spending plan</button></div>
+    <span id="scenario-note"></span>
+  </div>
+</div></header>
+
+<section id="accounts"><div class="wrap">
+  <div class="sec-head"><div class="idx">01 — Accounts</div><div><h2>Eight places our money sits</h2><p>Balances from the bank aggregator on 26 Sep 2026, plus Monex. Each account has one job. The line at the bottom shows what moves through it in a normal month.</p></div></div>
+  <div class="accts" id="accts"></div>
+  <div class="liab"><span>SBI Shinsei housing loan (Century Park Tower 2805) — outstanding</span><b class="num" id="loan"></b></div>
+</div></section>
+
+<section id="flow"><div class="wrap">
+  <div class="sec-head"><div class="idx">02 — Flow</div><div><h2>One month, end to end</h2><p>Left: where money comes from. Middle: which account it lands in. Right: where it leaves to. Yearly items (bonus, tax) are shown as a monthly twelfth. The clay band on the left is what our balances have to cover.</p></div></div>
+  <div class="sankey-box">
+    <svg id="sankey" viewBox="0 0 1100 620" preserveAspectRatio="xMidYMid meet"></svg>
+    <div class="sk-legend"><span><i style="background:#5e6a4f"></i>Income</span><span><i style="background:#a0634a"></i>Drawn from balances</span><span><i style="background:#151311"></i>Account</span><span><i style="background:#7a6650"></i>Investment (stays ours)</span><span><i style="background:#c9b79c"></i>Spending &amp; obligations</span></div>
+    <div class="caption">Yen per month. Source: Cashflow Analysis Sep 26 (built from the Aug 26 sheet, bank statements and the Amex export).</div>
+  </div>
+</div></section>
+
+<section id="month"><div class="wrap">
+  <div class="sec-head"><div class="idx">03 — The month</div><div><h2>The monthly statement</h2><p>The same numbers as a list. Fixed lines are contracts; the card line is the one we control.</p></div></div>
+  <div class="two">
+    <table class="mtable" id="mtable"></table>
+    <div>
+      <div class="note-card">
+        <div class="eyebrow">The pressure point</div>
+        <h4>SBI Shinsei runs dry</h4>
+        <p>Salary lands here, but the card, the 2805 loan and Brillia's bills all leave from here too. It is short by <b id="sbi-gap"></b> every month, and holds only <b id="sbi-bal"></b> today.</p>
+        <p>The 30 November tax prepayment of ¥529,800 also comes from here. Without a transfer, the account goes negative in November.</p>
+      </div>
+      <div class="note-card">
+        <div class="eyebrow">The fix</div>
+        <h4>Chiba refills SBI</h4>
+        <p>Chiba is the emergency fund. A standing rule keeps SBI safe: whenever SBI drops below ¥300,000 at month end, move enough from Chiba to bring it back to ¥500,000. The projection below applies this rule.</p>
+      </div>
+      <div class="note-card">
+        <div class="eyebrow">Monex</div>
+        <h4>Filled once a year</h4>
+        <p>No monthly transfer. On bonus day, half the bonus (<b id="monex-in"></b>) goes to Monex NISA. That money is still ours, so it does not count as spending.</p>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section id="projection"><div class="wrap">
+  <div class="sec-head"><div class="idx">04 — Twelve months</div><div><h2>If nothing changes</h2><p>Month-end balances from October 2026 to September 2027, with the Chiba → SBI refill rule applied. bitFlyer is held flat at today's value because its price moves on its own.</p></div></div>
+  <div class="proj-box">
+    <svg id="proj" viewBox="0 0 1100 380" preserveAspectRatio="xMidYMid meet"></svg>
+    <div class="proj-legend" id="proj-legend"></div>
+    <div class="caption">Yen, month-end balance. Liquid total excludes bitFlyer (¥5.3M, held flat).</div>
+  </div>
+  <div class="events" id="events"></div>
+  <div class="ptable-wrap"><table class="ptable" id="ptable"></table></div>
+</div></section>
+
+<footer><div class="wrap">
+  <div><div class="mark" style="margin-bottom:14px">Sénse<small>TOKYO</small></div>Prepared for Keigo &amp; Isadora · September 2026</div>
+  <div>Sources: bank aggregator balances (26 Sep 2026); Monex ¥1,514,295 (user, Sep 2026); "Cashflow Analysis Sep 26" tab built from the Aug 26 Google Sheet; Waymo take-home = Google bank average Oct 2025–Mar 2026 until the first Waymo payslip; Brillia rent ¥335,000 less ¥11,200 management fee (2025 statements); Tokyo Star refinance payment ¥328,884; card = Amex Jan–Apr 2026 average excluding tax and business. Tax: R8 second prepayment ¥529,800 on 30 Nov 2026, as in the sheet. Not modelled: a possible July 2027 prepayment (about ¥353k if the R8 return looks like R7), which depends on the R8 return. Rakuten, Visa Saison and PayPal are not modelled.</div>
+</div></footer>
+
+<script>
+const yen = n => (n<0?'−':'') + '¥' + Math.abs(Math.round(n)).toLocaleString('en-US');
+const k = n => (n<0?'−':'') + '¥' + (Math.abs(n)>=1e6 ? (Math.abs(n)/1e6).toFixed(2)+'M' : Math.round(Math.abs(n)/1000)+'k');
+
+const BAL = {sbi:208424, chiba:2285009, tokyostar:1132462, smbc:206675, resona:73401, rakuten:275, sbj:21, bitflyer:5298746, monex:1514295};
+const LOAN = -112595638;
+const CARD = {base:412264, plan:277605};
+const M = { salary:782959, rent:323800, bonus:1677165, brilliaLoan:328884, brilliaBills:55738, loan2805:310000, mgmt2805:64000,
+            atm:40000, tax:529800, taxJul:353200, scholarship:12535, subcard:3059 };
+M.monexShare = Math.round(M.bonus/2);
+
+let scenario = localStorage.getItem('st-cf-scn') || 'base';
+const card = () => CARD[scenario];
+
+function monthly(){
+  const inflow = M.salary + M.rent + M.bonus/12;
+  const outs = [
+    ['Main card (Amex)','sbi',card(),'spend'],
+    ['2805 loan','sbi',M.loan2805,'spend'],
+    ['2805 management','sbi',M.mgmt2805,'spend'],
+    ['Brillia bills','sbi',M.brilliaBills,'spend'],
+    ['Cash (ATM)','sbi',M.atm,'spend'],
+    ['Tax prepayment','sbi',M.tax/12,'spend'],
+    ['Monex NISA','sbi',M.monexShare/12,'invest'],
+    ['Brillia loan','tokyostar',M.brilliaLoan,'spend'],
+    ['Scholarship','smbc',M.scholarship,'spend'],
+    ['Sub card (Saison)','resona',M.subcard,'spend'],
+  ];
+  const outTotal = outs.filter(o=>o[3]==='spend').reduce((a,o)=>a+o[2],0);
+  return {inflow, outs, outTotal, net: inflow - outTotal};
+}
+
+function accountFlows(){
+  const f = {sbi:M.salary + M.bonus/12, tokyostar:M.rent, smbc:0, resona:0, chiba:0, bitflyer:0, monex:M.monexShare/12, other:0};
+  monthly().outs.forEach(o => f[o[1]] -= o[2]);
+  return f;
+}
+
+/* KPIs */
+function drawKpis(){
+  const m = monthly();
+  const liquid = Object.values(BAL).reduce((a,b)=>a+b,0);
+  document.getElementById('k-assets').textContent = yen(liquid);
+  document.getElementById('k-in').textContent = yen(m.inflow);
+  document.getElementById('k-out').textContent = yen(m.outTotal);
+  document.getElementById('k-net').textContent = yen(m.net);
+  document.getElementById('k-net-box').className = 'kpi ' + (m.net<0?'bad':'good');
+  document.getElementById('scenario-note').textContent = scenario==='base'
+    ? `Card at today's ${yen(CARD.base)} a month (Jan–Apr average).`
+    : `Card at the agreed ${yen(CARD.plan)} a month from the spending dashboard.`;
+  document.querySelectorAll('#scenario button').forEach(b => b.classList.toggle('on', b.dataset.v===scenario));
+}
+
+/* accounts */
+function drawAccounts(){
+  const f = accountFlows();
+  const A = [
+    ['sbi','Hub','SBI Shinsei','Salary in · card, 2805, bills, tax out', f.sbi],
+    ['chiba','Emergency fund','Chiba Bank','Refills SBI when it runs low', 0],
+    ['tokyostar','Brillia','Tokyo Star','Rent in · refinance payment out', f.tokyostar],
+    ['smbc','Scholarship','SMBC','Scholarship repayment out', f.smbc],
+    ['resona','Sub card','Resona','Visa Saison out', f.resona],
+    ['monex','Investing','Monex','Half the bonus into NISA, once a year', M.monexShare],
+    ['bitflyer','Crypto','bitFlyer',`No new buys · ${Math.round(BAL.bitflyer/Object.values(BAL).reduce((a,b)=>a+b,0)*100)}% of liquid assets`, 0],
+    ['rakuten','Dormant','Rakuten + SBJ','Can be closed', 0],
+  ];
+  document.getElementById('accts').innerHTML = A.map(([id,role,name,desc,flow]) => {
+    const bal = id==='rakuten' ? BAL.rakuten + BAL.sbj : BAL[id];
+    const flowTxt = id==='monex' ? `<span>Per year</span><b class="pos num">+${yen(flow)}</b>`
+      : flow===0 ? `<span>Per month</span><b class="num">±¥0</b>`
+      : `<span>Per month</span><b class="num ${flow<0?'neg':'pos'}">${flow>0?'+':''}${yen(flow)}</b>`;
+    return `<div class="acct ${id==='sbi'?'alert':''}"><div class="role">${role}</div><h3>${name}</h3><div class="bal num">${yen(bal)}</div><div style="font-size:12px;color:var(--st-muted)">${desc}</div><div class="flow">${flowTxt}</div></div>`;
+  }).join('');
+  document.getElementById('loan').textContent = yen(LOAN);
+}
+
+/* sankey */
+function drawSankey(){
+  const f = accountFlows(), m = monthly();
+  const draw = {sbi:Math.max(0,-f.sbi), tokyostar:Math.max(0,-f.tokyostar), smbc:Math.max(0,-f.smbc), resona:Math.max(0,-f.resona)};
+  const drawTotal = Object.values(draw).reduce((a,b)=>a+b,0);
+  const sources = [
+    {id:'salary', label:'Waymo salary', v:M.salary, c:'#5e6a4f'},
+    {id:'rent', label:'Brillia rent', v:M.rent, c:'#5e6a4f'},
+    {id:'bonus', label:'Bonus ÷ 12', v:M.bonus/12, c:'#5e6a4f'},
+    {id:'draw', label:'Drawn from balances', v:drawTotal, c:'#a0634a'},
+  ].filter(s=>s.v>0.5);
+  const accts = [
+    {id:'sbi', label:'SBI Shinsei'}, {id:'tokyostar', label:'Tokyo Star'}, {id:'smbc', label:'SMBC'}, {id:'resona', label:'Resona'},
+  ];
+  const links = [
+    ['salary','sbi',M.salary], ['bonus','sbi',M.bonus/12], ['rent','tokyostar',M.rent],
+    ...Object.entries(draw).filter(([,v])=>v>0.5).map(([a,v])=>['draw',a,v]),
+  ];
+  const uses = m.outs.map(o=>({id:o[0], label:o[0], acct:o[1], v:o[2], c:o[3]==='invest'?'#7a6650':'#c9b79c'}));
+  // surplus (plan scenario) goes to savings
+  Object.entries(f).forEach(([a,v]) => { if (v>0.5 && ['sbi','tokyostar'].includes(a)) uses.push({id:'save-'+a, label:'Kept as savings', acct:a, v, c:'#5e6a4f'}); });
+  uses.sort((a,b)=> accts.findIndex(x=>x.id===a.acct) - accts.findIndex(x=>x.id===b.acct) || b.v-a.v);
+
+  const W=1100, H=620, top=10, bottom=10, nodeW=14, pad=10;
+  const total = sources.reduce((a,s)=>a+s.v,0);
+  const accPad = 34;
+  const scale = Math.min((H-top-bottom - pad*(uses.length-1)) / total, (H-top-bottom-30 - accPad*(accts.length-1)) / total);
+  const col = [150, 520, 860];
+  const place = (nodes, x, gap=pad, off=0) => {
+    const sum = nodes.reduce((a,n)=>a+n.v,0)*scale + gap*(nodes.length-1);
+    let y = top + off + (H-top-bottom-off-sum)/2;
+    nodes.forEach(n=>{ n.x=x; n.y=y; n.h=Math.max(2,n.v*scale); n.o1=0; n.o2=0; y += n.h + gap; });
+  };
+  accts.forEach(a => { a.v = Math.max(links.filter(l=>l[1]===a.id).reduce((s,l)=>s+l[2],0), uses.filter(u=>u.acct===a.id).reduce((s,u)=>s+u.v,0)); });
+  place(sources, col[0]); place(accts, col[1], accPad, 20); place(uses, col[2]);
+  const byId = Object.fromEntries([...sources,...accts].map(n=>[n.id,n]));
+  const band = (x0,y0,x1,y1,h,color,op) => {
+    const mx=(x0+x1)/2;
+    return `<path d="M${x0},${y0} C${mx},${y0} ${mx},${y1} ${x1},${y1} L${x1},${y1+h} C${mx},${y1+h} ${mx},${y0+h} ${x0},${y0+h} Z" fill="${color}" opacity="${op}"/>`;
+  };
+  let s='';
+  links.forEach(([from,to,v]) => {
+    const a=byId[from], b=byId[to], h=v*scale;
+    s += band(a.x+nodeW, a.y+a.o1, b.x, b.y+b.o2, h, from==='draw'?'#a0634a':'#5e6a4f', .28);
+    a.o1+=h; b.o2+=h;
+  });
+  uses.forEach(u => {
+    const a=byId[u.acct], h=u.v*scale;
+    s += band(a.x+nodeW, a.y+a.o1, u.x, u.y, h, u.c, .45);
+    a.o1+=h;
+  });
+  sources.forEach(n => s += `<rect x="${n.x}" y="${n.y}" width="${nodeW}" height="${n.h}" fill="${n.c}"/>
+     <text x="${n.x-12}" y="${n.y+n.h/2-4}" text-anchor="end" font-size="13" fill="#151311">${n.label}</text>
+     <text x="${n.x-12}" y="${n.y+n.h/2+13}" text-anchor="end" font-size="12" fill="#8c8275">${yen(n.v)}</text>`);
+  accts.forEach(n => s += `<rect x="${n.x}" y="${n.y}" width="${nodeW}" height="${n.h}" fill="#151311"/>
+     <text x="${n.x+nodeW/2}" y="${n.y-6}" text-anchor="middle" font-size="12" letter-spacing="1.5" fill="#151311">${n.label.toUpperCase()}</text>`);
+  uses.forEach(n => s += `<rect x="${n.x}" y="${n.y}" width="${nodeW}" height="${n.h}" fill="${n.c}"/>
+     <text x="${n.x+nodeW+10}" y="${n.y+n.h/2+4}" font-size="12.5" fill="#151311">${n.label} <tspan fill="#8c8275">${yen(n.v)}</tspan></text>`);
+  document.getElementById('sankey').innerHTML = s;
+}
+
+/* monthly statement */
+function drawTable(){
+  const m = monthly(), f = accountFlows();
+  const rows = [
+    ['grp','Money in'],
+    ['Waymo salary (take-home)', M.salary, 'SBI Shinsei · 25th'],
+    ['Brillia rent (net of 3% fee)', M.rent, 'Tokyo Star'],
+    ['Bonus ÷ 12', M.bonus/12, `SBI Shinsei · ${yen(M.bonus)} in March`],
+    ['grp','Money out'],
+    ['Main card (Amex)', -card(), scenario==='base'?'Jan–Apr average':'Agreed plan'],
+    ['2805 loan', -M.loan2805, 'SBI Shinsei · 26th'],
+    ['Brillia refinance payment', -M.brilliaLoan, 'Tokyo Star · 26th'],
+    ['2805 management fee', -M.mgmt2805, 'SBI Shinsei'],
+    ['Brillia management & land rent', -M.brilliaBills, 'SBI Shinsei'],
+    ['Tax prepayment ÷ 12', -M.tax/12, `${yen(M.tax)} on 30 Nov`],
+    ['Cash (ATM)', -M.atm, 'SBI Shinsei'],
+    ['Scholarship', -M.scholarship, 'SMBC'],
+    ['Sub card (Visa Saison)', -M.subcard, 'Resona'],
+  ];
+  document.getElementById('mtable').innerHTML = `<thead><tr><th>Line</th><th>Per month</th></tr></thead><tbody>` +
+    rows.map(r => r[0]==='grp' ? `<tr class="grp"><td colspan="2">${r[1]}</td></tr>`
+      : `<tr><td>${r[0]}<small>${r[2]}</small></td><td class="num ${r[1]<0?'':'pos'}">${yen(r[1])}</td></tr>`).join('') +
+    `<tr class="tot"><td>Net cashflow</td><td class="num ${m.net<0?'neg':'pos'}">${yen(m.net)}</td></tr>
+     <tr><td>Separately moved to Monex NISA (still ours)<small>Half the bonus, moved on bonus day · ÷ 12</small></td><td class="num">${yen(M.monexShare/12)}</td></tr></tbody>`;
+  document.getElementById('sbi-gap').textContent = yen(-(M.salary - card() - M.loan2805 - M.mgmt2805 - M.brilliaBills - M.atm)).replace('−','');
+  document.getElementById('sbi-bal').textContent = yen(BAL.sbi);
+  document.getElementById('monex-in').textContent = yen(M.monexShare);
+}
+
+/* projection */
+const MONTHS = ['Oct 26','Nov 26','Dec 26','Jan 27','Feb 27','Mar 27','Apr 27','May 27','Jun 27','Jul 27','Aug 27','Sep 27'];
+function project(){
+  let b = {...BAL}; const out=[]; const transfers=[];
+  MONTHS.forEach((mo,i) => {
+    b.sbi += M.salary - card() - M.loan2805 - M.mgmt2805 - M.brilliaBills - M.atm;
+    b.tokyostar += M.rent - M.brilliaLoan;
+    b.smbc -= M.scholarship; b.resona -= M.subcard;
+    if (mo==='Nov 26') b.sbi -= M.tax;
+    if (mo==='Mar 27') { b.sbi += M.bonus - M.monexShare; b.monex += M.monexShare; }
+    let t=0;
+    if (b.sbi < 300000) { t = Math.min(500000 - b.sbi, b.chiba); b.chiba -= t; b.sbi += t; }
+    transfers.push(t);
+    out.push({...b, t});
+  });
+  return out;
+}
+function drawProjection(){
+  const P = project();
+  const series = [
+    ['Liquid total (banks + Monex)', p => p.sbi+p.chiba+p.tokyostar+p.smbc+p.resona+p.rakuten+p.sbj+p.monex, '#151311', 2.2],
+    ['Chiba (emergency fund)', p => p.chiba, '#a0634a', 1.6],
+    ['Monex', p => p.monex, '#7a6650', 1.6],
+    ['Tokyo Star', p => p.tokyostar, '#5e6a4f', 1.6],
+    ['SBI Shinsei', p => p.sbi, '#c9b79c', 1.6],
+  ];
+  const start = {...BAL};
+  const W=1100,H=380,L=70,R=20,T=16,B=36;
+  const all = series.flatMap(s => [s[1](start), ...P.map(s[1])]);
+  const max = Math.ceil(Math.max(...all)/1e6)*1e6, min = 0;
+  const x = i => L + i*(W-L-R)/12, y = v => T + (1-(v-min)/(max-min))*(H-T-B);
+  let s='';
+  for (let v=0; v<=max; v+=1e6) s += `<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="#dcd2c3" stroke-width="1"/><text x="${L-10}" y="${y(v)+4}" text-anchor="end" font-size="11" fill="#8c8275">¥${v/1e6}M</text>`;
+  ['Now',...MONTHS].forEach((m,i) => s += `<text x="${x(i)}" y="${H-12}" text-anchor="middle" font-size="11" fill="#8c8275">${m}</text>`);
+  series.forEach(([name,fn,c,w]) => {
+    const pts = [fn(start), ...P.map(fn)];
+    s += `<polyline fill="none" stroke="${c}" stroke-width="${w}" points="${pts.map((v,i)=>`${x(i)},${y(v)}`).join(' ')}"/>`;
+    s += pts.map((v,i)=>`<circle cx="${x(i)}" cy="${y(v)}" r="2.6" fill="${c}"><title>${name} · ${['Now',...MONTHS][i]}: ${yen(v)}</title></circle>`).join('');
+  });
+  [['Nov 26','Tax ¥530k'],['Mar 27','Bonus']].forEach(([m,l]) => {
+    const i = MONTHS.indexOf(m)+1;
+    s += `<line x1="${x(i)}" x2="${x(i)}" y1="${T}" y2="${H-B}" stroke="#a0634a" stroke-dasharray="3 4" stroke-width="1"/><text x="${x(i)+5}" y="${T+10}" font-size="10.5" letter-spacing="1" fill="#a0634a">${l.toUpperCase()}</text>`;
+  });
+  document.getElementById('proj').innerHTML = s;
+  document.getElementById('proj-legend').innerHTML = series.map(([n,,c])=>`<span><i style="background:${c}"></i>${n}</span>`).join('');
+
+  const last = P[P.length-1];
+  const liq0 = series[0][1](start), liq1 = series[0][1](last);
+  const tTotal = P.reduce((a,p)=>a+p.t,0);
+  document.getElementById('events').innerHTML = `
+    <div class="ev"><div class="d num">${yen(liq1-liq0)}</div><h4>Liquid change in 12 months</h4><p>From ${yen(liq0)} to ${yen(liq1)}, not counting bitFlyer. Monex grows by ${yen(M.monexShare)} on bonus day.</p></div>
+    <div class="ev"><div class="d num">${yen(tTotal)}</div><h4>Moved Chiba → SBI</h4><p>Chiba ends at ${yen(last.chiba)}. ${last.chiba<1000000?'That is thin for an emergency fund.':'Still a working emergency fund.'}</p></div>
+    <div class="ev"><div class="d num">${yen(last.smbc)}</div><h4>SMBC in a year</h4><p>The scholarship drains SMBC by ${yen(M.scholarship)} a month with nothing coming in. It lasts about ${Math.floor(BAL.smbc/M.scholarship)} months.</p></div>`;
+
+  const rowsDef = [['SBI Shinsei','sbi'],['Chiba','chiba'],['Tokyo Star','tokyostar'],['SMBC','smbc'],['Resona','resona'],['Monex','monex']];
+  document.getElementById('ptable').innerHTML =
+    `<thead><tr><th>Account</th><th>Now</th>${MONTHS.map(m=>`<th>${m}</th>`).join('')}</tr></thead><tbody>` +
+    rowsDef.map(([n,id])=>`<tr><td>${n}</td><td class="num">${k(start[id])}</td>${P.map(p=>`<td class="num ${p[id]<0?'neg':''}">${k(p[id])}</td>`).join('')}</tr>`).join('') +
+    `<tr><td>Chiba → SBI</td><td></td>${P.map(p=>`<td class="num">${p.t?k(p.t):'—'}</td>`).join('')}</tr>` +
+    `<tr class="tot"><td>Liquid total</td><td class="num">${k(liq0)}</td>${P.map(p=>`<td class="num">${k(series[0][1](p))}</td>`).join('')}</tr></tbody>`;
+}
+
+function render(){ drawKpis(); drawAccounts(); drawSankey(); drawTable(); drawProjection(); }
+document.querySelectorAll('#scenario button').forEach(b => b.onclick = () => { scenario = b.dataset.v; try{localStorage.setItem('st-cf-scn',scenario)}catch(e){} render(); });
+render();
+</script>
+</body>
+</html>
